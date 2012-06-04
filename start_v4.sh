@@ -15,7 +15,7 @@
 
 do_abfrage_cfg()
 {
-  echo -n "Bitte gib die Nummer der Servers an (servercfg): "
+  echo -n "Bitte gib die Nummer des Servers an (servercfg): "
   read SERVERNO
 }
 
@@ -132,19 +132,19 @@ do_set_startcmd()
 
     cstrike)
       cd $DIR
-      START="./hlds_run -game cstrike +map de_dust2 -maxplayers 12 +ip $IP -port $PORT +sys_ticrate 1020 -pingboost 3 +servercfgfile server_$SERVERNO.cfg";
+      START="./hlds_run -game cstrike +map de_dust2 -maxplayers 12 +ip 0.0.0.0 -port $PORT +sys_ticrate 1020 -pingboost 3 +servercfgfile server_$SERVERNO.cfg";
       ;;
     css)
       cd $DIR/css
-      START="./srcds_run -game cstrike +map de_dust2 +maxplayers 12 -port $PORT +servercfgfile server_$SERVERNO.cfg +ip $IP -fps_max 66.67";
+      START="./srcds_run -game cstrike +map de_dust2 +maxplayers 12 -port $PORT +servercfgfile server_$SERVERNO.cfg +ip 0.0.0.0 -fps_max 66.67";
       ;;
     cod)
       cd $DIR
-      START="./cod4_lnxded +set g_gametype sd +set fs_game mods/promodlive211 +set loc_language 2 +set net_ip $IP +set net_port 28960 +set dedicated 2 +exec server_$SERVERNO.cfg +map_rotate +set sv_maxclients 12 +set ttycon 0 +set developer 0 +set fs_homepath ./ +set fs_basepath ./"
+      START="./cod4_lnxded +set g_gametype sd +set fs_game mods/promodlive211 +set loc_language 2 +set net_ip 0.0.0.0 +set net_port 28960 +set dedicated 2 +exec server_$SERVERNO.cfg +map_rotate +set sv_maxclients 12 +set ttycon 0 +set developer 0 +set fs_homepath ./ +set fs_basepath ./"
       ;;
     tf)
       cd $DIR/orangebox
-      START="./srcds_run -game tf -tickrate 66 -maxplayers 24 +map cp_badlands +ip $IP -port $PORT +servercfgfile server_$SERVERNO.cfg";
+      START="./srcds_run -game tf -tickrate 66 -maxplayers 24 +map cp_badlands +ip 0.0.0.0 -port $PORT +servercfgfile server_$SERVERNO.cfg";
       ;;
     tmnf)
       cd $DIR
@@ -164,7 +164,7 @@ do_set_startcmd()
       ;;
     hl2mp)
       cd $DIR/orangebox
-      START="./srcds_run -game hl2mp +map dm_lockdown -ip $IP -port $PORT +maxplayers 12 +exec server_$SERVERNO.cfg"
+      START="./srcds_run -game hl2mp +map dm_lockdown -ip 0.0.0.0 -port $PORT +maxplayers 12 +exec server_$SERVERNO.cfg"
       ;;
 
     * )
