@@ -20,21 +20,21 @@ DIR='/usr/local/games/'
 
 do_abfrage_port()
 {
-  echo -n "Bitte Port fï¿½r den neuen Server festlegen: "
+  echo -n "Bitte Port fuer den neuen Server festlegen: "
   read PORT;
   echo "$ENGINE"
   if [ "$ENGINE" == "hl" ]; then
     if [ $PORT -lt 27015 -o $PORT -gt 27019 ]; then
-      echo "Port must between 27015 and 27019"
+      echo "Der Port muss zwischen 27015 und 27019 liegen"
       do_abfrage_port;
     fi
   elif [ "$ENGINE" == "cod" ];then
     if [ $PORT -lt 28960 -o $PORT -gt 28970 ]; then
-      echo "Port must between 28960 and 28970"
+      echo "Der Port muss zwischen 28960 und 28970 liegen"
       do_abfrage_port;
     fi
   else
-    echo "alles OK"
+    echo "Alles OK :-)"
   fi
 }
 
@@ -108,7 +108,8 @@ do_abfrage_game()
     * )
       for i in 5 4 3 2 1 
         do
-          echo  "Ungueltige Eingabe! Bitte erneut versuchen in '$i' Sekunden";sleep 1;
+          echo  "Ungueltige Eingabe! Bitte erneut versuchen in '$i' Sekunden";
+          sleep 1;
         done
         do_abfrage_game;
         ;;
