@@ -11,13 +11,31 @@
 #                                                    #
 ######################################################
 
+#Variables
 
+MASTER='192.168.2.146'
+DIR='/usr/local/games/'
+
+#Funcations
 
 do_abfrage_port()
 {
-  echo -n "Bitte Port für den neuen Server festlegen: "
+  echo -n "Bitte Port fï¿½r den neuen Server festlegen: "
   read PORT;
-  echo ""
+  echo "$ENGINE"
+  if [ "$ENGINE" == "hl" ]; then
+    if [ $PORT -lt 27015 -o $PORT -gt 27019 ]; then
+      echo "Port must between 27015 and 27019"
+      do_abfrage_port;
+    fi
+  elif [ "$ENGINE" == "cod" ];then
+    if [ $PORT -lt 28960 -o $PORT -gt 28970 ]; then
+      echo "Port must between 28960 and 28970"
+      do_abfrage_port;
+    fi
+  else
+    echo "alles OK"
+  fi
 }
 
 do_abfrage_game()
@@ -42,39 +60,48 @@ do_abfrage_game()
   case $GAME_SELECT in
 
     1)
-      GAME=cstrike
+      GAME=cstrike;
+      ENGINE=hl;
       do_abfrage_port;
       ;;
     2)
       GAME=css;
+      ENGINE=hl;
       do_abfrage_port;
       ;;
     3)
       GAME=cod;
+      ENGINE=cod;
       do_abfrage_port;
       ;;
     4)
       GAME=tf;
+      ENGINE=hl;
       do_abfrage_port;
       ;;
     5)
       GAME=tmnf;
+      ENGINE=tmnf;
       do_abfrage_port;
       ;;
     6)
       GAME=quake;
+      ENGINE=quake;
       do_abfrage_port;
       ;;
     7)
       GAME=ut;
+      ENGINE=ut;
       do_abfrage_port;
       ;;
     8)
       GAME=bf;
+      ENGINE=bf;
       do_abfrage_port;
       ;;
     9)
       GAME=hl2mp;
+      ENGINE=hl;
       do_abfrage_port;
       ;;
 
@@ -90,8 +117,6 @@ esac
 
 do_rsync()
 {
-  MASTER='192.168.2.146'
-  DIR='/usr/local/games/'
   /usr/bin/sudo -u $GAME$PORT /usr/bin/rsync -av root@$MASTER:$DIR/$GAME/ /home/$GAME$PORT;
 }
 
@@ -111,6 +136,7 @@ check_requ()
     do_rsync;
   fi
 }
+
 
 # Main
 do_abfrage_game;
