@@ -43,7 +43,9 @@ do_abfrage_game()
   clear;
   echo "Bitte Spiel auswaehlen: " 
   echo "";
-  echo "";
+  echo "--------------------------------";
+  echo "------  Turnier Games  ---------";
+  echo "--------------------------------";
   echo "1) Counter-Strike";
   echo "2) Counter-Strike:Source"
   echo "3) Call of Duty 4";
@@ -51,14 +53,17 @@ do_abfrage_game()
   echo "5) TrackMania Nations Forever";
   echo "6) Quake 3";
   echo "7) Unreal Tournament 2004";
-  echo "8) Battlefield 2";
-  echo "9) HL2-Deathmatch"
+  echo "8) HL2-Deathmatch"
   echo "--------------------------------";
-  echo "10) CSS-Gungame";
-  echo "11) CSS-Deathmatch";
-  echo "12) CSS-Zombie";
-  echo "13) CS1.6-Gungame";
-  echo "14) CS1.6-Deathmatch";
+  echo "------  Sonstige Games ---------";
+  echo "--------------------------------";
+  echo "9) Battlefield 2";
+  echo "10) Left4Dead 2";
+  echo "11) CSS-Gungame";
+  echo "12) CSS-Deathmatch";
+  echo "13) CSS-Zombie";
+  echo "14) CS1.6-Gungame";
+  echo "15) CS1.6-Deathmatch";
   echo -n "Spielnummer (1-14): "
   read GAME_SELECT;
 
@@ -100,36 +105,41 @@ do_abfrage_game()
       do_abfrage_port;
       ;;
     8)
-      GAME=bf;
-      ENGINE=bf;
-      do_abfrage_port;
-      ;;
-    9)
       GAME=hl2mp;
       ENGINE=hl;
       do_abfrage_port;
       ;;
+    9)
+      GAME=bf;
+      ENGINE=bf;
+      do_abfrage_port;
+      ;;
     10)
-      GAME=cssgg;
+      GAME=ldd;
       ENGINE=hl;
       do_abfrage_port;
       ;;
     11)
-      GAME=cssdm;
+      GAME=cssgg;
       ENGINE=hl;
       do_abfrage_port;
       ;;
     12)
-      GAME=csszm;
+      GAME=cssdm;
       ENGINE=hl;
       do_abfrage_port;
       ;;
     13)
-      GAME=cstrikegg;
+      GAME=csszm;
       ENGINE=hl;
       do_abfrage_port;
       ;;
     14)
+      GAME=cstrikegg;
+      ENGINE=hl;
+      do_abfrage_port;
+      ;;
+    15)
       GAME=cstrikedm;
       ENGINE=hl;
       do_abfrage_port;
