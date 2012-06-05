@@ -36,17 +36,18 @@ do_abfrage_game()
   echo "5) TrackMania Nations Forever";
   echo "6) Quake 3";
   echo "7) Unreal Tournament 2004";
-  echo "8) HL2-Deathmatch"
+  echo "8) HL2-Deathmatch"  
+  echo "9) CSS-Gungame Turnier"
   echo "--------------------------------";
   echo "------ Sonstige Games ---------";
   echo "--------------------------------";
-  echo "9) Battlefield 2";
-  echo "10) Left4Dead 2";
-  echo "11) CSS-Gungame";
-  echo "12) CSS-Deathmatch";
-  echo "13) CSS-Zombie";
-  echo "14) CS1.6-Gungame";
-  echo "15) CS1.6-Deathmatch";
+  echo "10) Battlefield 2";
+  echo "11) Left4Dead 2";
+  echo "12) CSS-Gungame";
+  echo "13) CSS-Deathmatch";
+  echo "14) CSS-Zombie";
+  echo "15) CS1.6-Gungame";
+  echo "16) CS1.6-Deathmatch";
 
 echo -n "Spielnummer (1-15): ";
 read GAME_SELECT;
@@ -78,24 +79,27 @@ case $GAME_SELECT in
     GAME="hl2mp";
     ;;
   9)
-    GAME="bf";
+    GAME="cssggt";
     ;;
   10)
-    GAME="ldd";
+    GAME="bf";
     ;;
   11)
-    GAME="cssgg";
+    GAME="ldd";
     ;;
   12)
-    GAME="cssdm";
+    GAME="cssgg";
     ;;
   13)
-    GAME="csszm";
+    GAME="cssdm";
     ;;
   14)
-    GAME="cstrikegg";
+    GAME="csszm";
     ;;
   15)
+    GAME="cstrikegg";
+    ;;
+  16)
     GAME="cstrikedm";
     ;;
 
@@ -188,6 +192,10 @@ do_set_startcmd()
       cd $DIR/orangebox
       START="./srcds_run -game hl2mp +map dm_lockdown -ip 0.0.0.0 -port $PORT +maxplayers 12 +exec server_$SERVERNO.cfg"
       ;;
+    cssggt)
+      cd $DIR/css
+      START="./srcds_run -game cstrike +map 3romms +maxplayers 7 -port $PORT +servercfgfile servergg.cfg +ip 0.0.0.0 -fps_max 66.67";
+      ;;
     cssgg)
       cd $DIR/css
       START="./srcds_run -game cstrike +map 3romms +maxplayers 30 -port $PORT +servercfgfile servergg.cfg +ip 0.0.0.0 -fps_max 66.67";
@@ -225,4 +233,3 @@ do_set_startcmd()
 do_abfrage_game;
 do_abfrage_cfg;
 do_abfrage_port;
-
