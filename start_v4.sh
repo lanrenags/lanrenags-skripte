@@ -81,22 +81,22 @@ case $GAME_SELECT in
     GAME="bf";
     ;;
   10)
-    GAME=ldd;
+    GAME="ldd";
     ;;
   11)
-    GAME=cssgg;
+    GAME="cssgg";
     ;;
   12)
-    GAME=cssdm;
+    GAME="cssdm";
     ;;
   13)
-    GAME=csszm;
+    GAME="csszm";
     ;;
   14)
-    GAME=cstrikegg;
+    GAME="cstrikegg";
     ;;
   15)
-    GAME=cstrikedm;
+    GAME="cstrikedm";
     ;;
 
   * )
