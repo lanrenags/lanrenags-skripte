@@ -23,28 +23,32 @@ do_abfrage_cfg()
 
 do_abfrage_game()
 {
-clear;
-echo -e "\033[1;37;44m######################################################\033[0m"
-echo -e "\033[1;37;44m################      LANrena    #####################\033[0m"
-echo -e "\033[1;37;44m################         5       #####################\033[0m"
-echo -e "\033[1;37;44m################    The LANcode  #####################\033[0m"
-echo -e "\033[1;37;44m######################################################\033[0m"
+  clear;
+  echo "Bitte Spiel auswaehlen: "
+  echo "";
+  echo "--------------------------------";
+  echo "------ Turnier Games ---------";
+  echo "--------------------------------";
+  echo "1) Counter-Strike";
+  echo "2) Counter-Strike:Source"
+  echo "3) Call of Duty 4";
+  echo "4) Team Fortress 2";
+  echo "5) TrackMania Nations Forever";
+  echo "6) Quake 3";
+  echo "7) Unreal Tournament 2004";
+  echo "8) HL2-Deathmatch"
+  echo "--------------------------------";
+  echo "------ Sonstige Games ---------";
+  echo "--------------------------------";
+  echo "9) Battlefield 2";
+  echo "10) Left4Dead 2";
+  echo "11) CSS-Gungame";
+  echo "12) CSS-Deathmatch";
+  echo "13) CSS-Zombie";
+  echo "14) CS1.6-Gungame";
+  echo "15) CS1.6-Deathmatch";
 
-echo "";
-echo "Bitte Spiele auswaehlen: ";
-echo "";
-echo "";
-echo "1) Counter-Strike";
-echo "2) Counter-Strike:Source"
-echo "3) Call of Duty 4";
-echo "4) Team Fortress 2";
-echo "5) TrackMania Nations Forever";
-echo "6) Quake 3";
-echo "7) Unreal Tournament 2004";
-echo "8) Battlefield 2";
-echo "9) HL2-Deathmatch";
-
-echo -n "Spielnummer (1-9): ";
+echo -n "Spielnummer (1-15): ";
 read GAME_SELECT;
 
 case $GAME_SELECT in
@@ -71,10 +75,28 @@ case $GAME_SELECT in
     GAME="ut";
     ;;
   8)
-    GAME="bf";
+    GAME="hl2mp";
     ;;
   9)
-    GAME="hl2mp";
+    GAME="bf";
+    ;;
+  10)
+    GAME=ldd;
+    ;;
+  11)
+    GAME=cssgg;
+    ;;
+  12)
+    GAME=cssdm;
+    ;;
+  13)
+    GAME=csszm;
+    ;;
+  14)
+    GAME=cstrikegg;
+    ;;
+  15)
+    GAME=cstrikedm;
     ;;
 
   * )
@@ -127,28 +149,28 @@ do_abfrage_port()
 do_set_startcmd()
 {
   DIR="/home/$GAME$PORT"
-  IP="`ifconfig | grep 192. | awk '{print $2}' | awk -F: '{print $2}'`";
+  IP="`ip addr show | grep inet | grep eth0 | awk '{print $2}' | awk -F/ '{print $1}'`";
   case $GAME in
 
     cstrike)
       cd $DIR
-      START="./hlds_run -game cstrike +map de_dust2 -maxplayers 12 +ip 0.0.0.0 -port $PORT +sys_ticrate 1020 -pingboost 3 +servercfgfile server_$SERVERNO.cfg";
+      START="./hlds_run -game cstrike +map de_dust2 -maxplayers 11 +ip 0.0.0.0 -port $PORT +sys_ticrate 1010 -pingboost 3 +servercfgfile server_$SERVERNO.cfg";
       ;;
     css)
       cd $DIR/css
-      START="./srcds_run -game cstrike +map de_dust2 +maxplayers 12 -port $PORT +servercfgfile server_$SERVERNO.cfg +ip 0.0.0.0 -fps_max 66.67";
+      START="./srcds_run -game cstrike +map de_dust2 +maxplayers 11 -port $PORT +servercfgfile server_$SERVERNO.cfg +ip 0.0.0.0 -fps_max 66.67";
       ;;
     cod)
       cd $DIR
-      START="./cod4_lnxded +set g_gametype sd +set fs_game mods/promodlive211 +set loc_language 2 +set net_ip 0.0.0.0 +set net_port 28960 +set dedicated 2 +exec server_$SERVERNO.cfg +map_rotate +set sv_maxclients 12 +set ttycon 0 +set developer 0 +set fs_homepath ./ +set fs_basepath ./"
+      START="./cod4_lnxded +set g_gametype sd +set fs_game mods/promodlive211 +set loc_language 2 +set net_ip 0.0.0.0 +set net_port $PORT +set dedicated 2 +exec server_$SERVERNO.cfg +map_rotate +set sv_maxclients 7 +set ttycon 0 +set developer 0 +set fs_homepath ./ +set fs_basepath ./"
       ;;
     tf)
       cd $DIR/orangebox
-      START="./srcds_run -game tf -tickrate 66 -maxplayers 24 +map cp_badlands +ip 0.0.0.0 -port $PORT +servercfgfile server_$SERVERNO.cfg";
+      START="./srcds_run -game tf -maxplayers 12 +map cp_badlands +ip $IP -port $PORT +servercfgfile server_$SERVERNO.cfg +fps_max 66.7";
       ;;
     tmnf)
       cd $DIR
-      START="./TrackmaniaServer /lan /nodaemon /forceip=$IP /bindip=$IP /dedicated_cfg=dedicated_cfg.txt /game_settings=MatchSettings/Nations/NationsGreen.txt /autoquit";
+      START="./TrackmaniaServer /lan /nodaemon /forceip=$IP /bindip=$IP /dedicated_cfg=war_$SERVERNO.txt /game_settings=MatchSettings/Nations/NationsGreen.txt /autoquit";
       ;;
     quake)
       cd $DIR
@@ -156,7 +178,7 @@ do_set_startcmd()
       ;;
     ut)
       cd $DIR/System
-      START="./ucc-bin server DM-Asbestos?game=xGame.xDeathMatch?AdminName=admin?AdminPassword=lr?mutator=utcompv17a.MutUTComp?mutator=AntiTCC118j.MutAntiTCCFinal,xGame.MutVampire -nohomedir ini=server.ini";
+      START="./ucc-bin server DM-Asbestos?game=xGame.xDeathMatch?AdminName=admin?AdminPassword=lr?ServerActors=AntiTCC2009r6.MutAntiTCCFinal?mutator=utcompv17a.MutUTComp,xGame.MutInstaGib,xGame.MutNoAdrenaline,xWeapons.MutNoSuperWeapon?TimeLimit=15?GoalScore=0?bPlayerMustBeReady=1?WeaponStay=0?Translocator=0 -nohomedir ini=server_$SERVERNO.ini";
       ;;
     bf)
       cd $DIR
@@ -165,6 +187,30 @@ do_set_startcmd()
     hl2mp)
       cd $DIR/orangebox
       START="./srcds_run -game hl2mp +map dm_lockdown -ip 0.0.0.0 -port $PORT +maxplayers 12 +exec server_$SERVERNO.cfg"
+      ;;
+    cssgg)
+      cd $DIR/css
+      START="./srcds_run -game cstrike +map 3romms +maxplayers 30 -port $PORT +servercfgfile servergg.cfg +ip 0.0.0.0 -fps_max 66.67";
+      ;;
+    cssdm)
+      cd $DIR/css
+      START="./srcds_run -game cstrike +map de_dust2 +maxplayers 30 -port $PORT +servercfgfile serverdm.cfg +ip 0.0.0.0 -fps_max 66.67";
+      ;;    
+    csszm)
+      cd $DIR/css
+      START="./srcds_run -game cstrike +map de_dust2 +maxplayers 30 -port $PORT +servercfgfile serverzm.cfg +ip 0.0.0.0 -fps_max 66.67";
+      ;;
+    ldd)
+      cd $DIR/left4dead2
+      START="./srcds_run -game left4dead2 +map c2m1_highway -port $PORT +servercfgfile server.cfg +ip 0.0.0.0";
+      ;;
+    cstrikegg)
+      cd $DIR/css
+      START="./hlds_run -game cstrike +map de_dust2 -maxplayers 30 +ip 0.0.0.0 -port $PORT +sys_ticrate 1010 -pingboost 3 +servercfgfile servergg.cfg";
+      ;;
+    cstrikedm)
+      cd $DIR/css
+      START="./hlds_run -game cstrike +map de_dust2 -maxplayers 30 +ip 0.0.0.0 -port $PORT +sys_ticrate 1010 -pingboost 3 +servercfgfile serverdm.cfg";
       ;;
 
     * )
