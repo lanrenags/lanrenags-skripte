@@ -53,8 +53,13 @@ do_abfrage_game()
   echo "7) Unreal Tournament 2004";
   echo "8) Battlefield 2";
   echo "9) HL2-Deathmatch"
-  echo "";
-  echo -n "Spielnummer (1-9): "
+  echo "--------------------------------";
+  echo "10) CSS-Gungame";
+  echo "11) CSS-Deathmatch";
+  echo "12) CSS-Zombie";
+  echo "13) CS1.6-Gungame";
+  echo "14) CS1.6-Deathmatch";
+  echo -n "Spielnummer (1-14): "
   read GAME_SELECT;
 
   case $GAME_SELECT in
@@ -104,7 +109,31 @@ do_abfrage_game()
       ENGINE=hl;
       do_abfrage_port;
       ;;
-
+    10)
+      GAME=cssgg;
+      ENGINE=hl;
+      do_abfrage_port;
+      ;;
+    11)
+      GAME=cssdm;
+      ENGINE=hl;
+      do_abfrage_port;
+      ;;
+    12)
+      GAME=csszm;
+      ENGINE=hl;
+      do_abfrage_port;
+      ;;
+    13)
+      GAME=cstrikegg;
+      ENGINE=hl;
+      do_abfrage_port;
+      ;;
+    14)
+      GAME=cstrikedm;
+      ENGINE=hl;
+      do_abfrage_port;
+      ;;
     * )
       for i in 5 4 3 2 1 
         do
