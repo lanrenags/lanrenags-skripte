@@ -54,7 +54,7 @@ do_abfrage_game()
   echo "6) Quake 3";
   echo "7) Unreal Tournament 2004";
   echo "8) HL2-Deathmatch"
-  echo "9) HL2-Deathmatch"
+  echo "9) CSS-Gungame Turnier"
   echo "--------------------------------";
   echo "------  Sonstige Games ---------";
   echo "--------------------------------";
@@ -106,7 +106,7 @@ do_abfrage_game()
       do_abfrage_port;
       ;;
     8)
-      GAME=hl2mp;
+      GAME=hldm;
       ENGINE=hl;
       do_abfrage_port;
       ;;
