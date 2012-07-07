@@ -76,7 +76,7 @@ case $GAME_SELECT in
     GAME="ut";
     ;;
   8)
-    GAME="hl2mp";
+    GAME="hldm";
     ;;
   9)
     GAME="cssggt";
@@ -182,13 +182,13 @@ do_set_startcmd()
       ;;
     ut)
       cd $DIR/System
-      START="./ucc-bin server DM-Asbestos?game=xGame.xDeathMatch?AdminName=admin?AdminPassword=lr?ServerActors=AntiTCC2009r6.MutAntiTCCFinal?mutator=utcompv17a.MutUTComp,xGame.MutInstaGib,xGame.MutNoAdrenaline,xWeapons.MutNoSuperWeapon?TimeLimit=15?GoalScore=0?bPlayerMustBeReady=1?WeaponStay=0?Translocator=0 -nohomedir ini=server_$SERVERNO.ini";
+      START="./ucc-bin server DM-Asbestos?game=xGame.xDeathMatch?AdminName=admin?AdminPassword=lr?ServerActors=AntiTCC2009r6.MutAntiTCCFinal?mutator=utcompv17a.MutUTComp,xGame.MutInstaGib,xGame.MutNoAdrenaline,xWeapons.MutNoSuperWeapon?TimeLimit=15?GoalScore=0?bPlayerMustBeReady=1?WeaponStay=0?Translocator=0 -nohomedir ini=server_$SERVERNO.ini port=$PORT";
       ;;
     bf)
       cd $DIR
       START="./start.sh gsmod +maxPlayers 12 +port $PORT +set net_ip $IP +set dedicated 2 +lowPriority";
       ;;
-    hl2mp)
+    hldm)
       cd $DIR/orangebox
       START="./srcds_run -game hl2mp +map dm_lockdown -ip 0.0.0.0 -port $PORT +maxplayers 12 +exec server_$SERVERNO.cfg"
       ;;
