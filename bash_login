@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#SCREENCOUNT=`screen -ls | grep -e "Detached" -e "Attached" | wc -l`
+#
+#if [ $SCREENCOUNT == "1" ]
+#   then
+#            screen -x
+#   else
+#            bash
+#fi
+#clear
+#logout
+
+if ( [ "$TERM" != "screen" ] || [ ! $WINDOW ] ) && [ "$TERM" != "vt100" ]; then
+        SCREENCOUNT=`screen -ls | grep -e Detached -e Attached | wc -l`
+        if [ $SCREENCOUNT -le 0 ]; then
+                echo "Ctrl+C now to open a normal shell..."
+                sleep 0.5
+                screen -U
+                logout
+                exit
+        elif [ $SCREENCOUNT -eq 1 ]; then
+                echo "Ctrl+C now to open a normal shell..."
+                sleep 0.5
+                screen -x
+                logout
+                exit
+        else
+                /bin/bash
+        fi
+fi
