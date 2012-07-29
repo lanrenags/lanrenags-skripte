@@ -1,0 +1,2 @@
+hardstatus alwayslastline "%{kr} %H %{ky} load[%l] %{kg} %d.%m.%Y %c:%s 
+%{+b}%{yb} %=%?%-w%?[%n%f %t]%?%+w%? " shell bash
