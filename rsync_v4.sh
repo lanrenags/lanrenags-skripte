@@ -20,9 +20,22 @@ DIR='/usr/local/games/'
 
 do_abfrage_port()
 {
+  clear;
+  echo "######################################################"
+  echo "#                 PORT UEBERSICHT                    #"
+  echo "#                                                    #"
+  echo "#  ENGINE | PORTLIST           | COMMENTS            #"
+  echo "#  ------------------------------------------------- #"
+  echo "#  hl     | 27015 - 27019      | Step +1             #"
+  echo "#  cod    | 28960 - 28970      | Step +1             #"
+  echo "#  ut     | 7777  - 7787       | Step +2             #"
+  echo "#  bf     | ---                | ---                 #"
+  echo "#  tmnf   | ---                | ---                 #"
+  echo "######################################################"
+  echo ""
+
   echo -n "Bitte Port fuer den neuen Server festlegen: "
   read PORT;
-  echo "$ENGINE"
   if [ "$ENGINE" == "hl" ]; then
     if [ $PORT -lt 27015 -o $PORT -gt 27019 ]; then
       echo "Der Port muss zwischen 27015 und 27019 liegen"
