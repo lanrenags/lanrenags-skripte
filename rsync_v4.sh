@@ -66,7 +66,7 @@ do_abfrage_game()
   echo "5) TrackMania Nations Forever";
   echo "6) Quake 3";
   echo "7) Unreal Tournament 2004";
-  echo "8) HL2-Deathmatch"
+  echo "8) CS-GO Turnier"
   echo "9) CSS-Gungame Turnier"
   echo "--------------------------------";
   echo "------  Sonstige Games ---------";
@@ -78,6 +78,7 @@ do_abfrage_game()
   echo "14) CSS-Zombie";
   echo "15) CS1.6-Gungame";
   echo "16) CS1.6-Deathmatch";
+  echo "17) HL2-DM";
   echo -n "Spielnummer (1-14): "
   read GAME_SELECT;
 
@@ -119,7 +120,7 @@ do_abfrage_game()
       do_abfrage_port;
       ;;
     8)
-      GAME=hldm;
+      GAME=csgo;
       ENGINE=hl;
       do_abfrage_port;
       ;;
@@ -160,6 +161,11 @@ do_abfrage_game()
       ;;
     16)
       GAME=cstrikedm;
+      ENGINE=hl;
+      do_abfrage_port;
+      ;;
+    17)
+      GAME=hldm;
       ENGINE=hl;
       do_abfrage_port;
       ;;
