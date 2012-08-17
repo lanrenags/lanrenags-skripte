@@ -36,7 +36,7 @@ do_abfrage_game()
   echo "5) TrackMania Nations Forever";
   echo "6) Quake 3";
   echo "7) Unreal Tournament 2004";
-  echo "8) HL2-Deathmatch"  
+  echo "8) Counter-Strike GO - Demolition"  
   echo "9) CSS-Gungame Turnier"
   echo "--------------------------------";
   echo "------ Sonstige Games ---------";
@@ -48,6 +48,7 @@ do_abfrage_game()
   echo "14) CSS-Zombie";
   echo "15) CS1.6-Gungame";
   echo "16) CS1.6-Deathmatch";
+  echo "16) Halflife Deathmatch";
 
 echo -n "Spielnummer (1-15): ";
 read GAME_SELECT;
@@ -76,7 +77,7 @@ case $GAME_SELECT in
     GAME="ut";
     ;;
   8)
-    GAME="hldm";
+    GAME="csgo";
     ;;
   9)
     GAME="cssggt";
@@ -102,7 +103,9 @@ case $GAME_SELECT in
   16)
     GAME="cstrikedm";
     ;;
-
+  17)
+    GAME="cstrikedm";
+    ;;
   * )
     for i in 5 4 3 2 1 ; do
       echo  "Ungueltige Eingabe! Bitte erneut versuchen in '$i' Sekunden";sleep 1;
@@ -220,7 +223,10 @@ do_set_startcmd()
       cd $DIR/css
       START="./hlds_run -game cstrike +map de_dust2 -maxplayers 30 +ip 0.0.0.0 -port $PORT +sys_ticrate 1010 -pingboost 3 +servercfgfile serverdm.cfg";
       ;;
-
+    csgo)
+      cd $DIR/css
+      START="./srcds_run -game csgo -console -usercon +game_type 1 +game_mode 1 +mapgroup mg_demolition +map de_dust -port $PORT +ip 0.0.0.0 +servercfgfile server_$SERVERNO.cfg";
+      ;;
     * )
       for i in 5 4 3 2 1 ; do
         echo  "Ungueltige Game uegergabe! Bitte erneut versuchen in '$i' Sekunden";sleep 1;
