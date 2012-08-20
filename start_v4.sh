@@ -181,7 +181,7 @@ do_set_startcmd()
       ;;
     quake)
       cd $DIR
-      START="./q3ded +set fs_game gsmod +set net_port $PORT +set sv_maxclients 12 +set com_hunkmegs 96 +set com_zoneMegs 64 +set vm_game 0 +set ttycon 0 +exec server.cfg";
+      START="./q3ded +set dedicated 2 +sv_lan 1 +set fs_game osp +net_port $PORT +exec duel-$SERVERNO.cfg";
       ;;
     ut)
       cd $DIR/System
