@@ -29,6 +29,7 @@ do_abfrage_port()
   echo "#  hl     | 27015 - 27019      | Step +1             #"
   echo "#  cod    | 28960 - 28970      | Step +1             #"
   echo "#  ut     | 7777  - 7787       | Step +2             #"
+  echo "#  quake  | 27960  - 27970     | Step +1             #"
   echo "#  bf     | ---                | ---                 #"
   echo "#  tmnf   | ---                | ---                 #"
   echo "######################################################"
